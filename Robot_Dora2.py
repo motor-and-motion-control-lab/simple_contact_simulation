@@ -1,13 +1,15 @@
 import pinocchio as pin
 import numpy as np
 from pinocchio.robot_wrapper import RobotWrapper
+import os
 
 # warnings.filterwarnings("ignore", category=UserWarning, message="You passed package dir(s) via argument geometry_model and provided package_dirs.")
 
 class Robot_Dora2:
     def __init__(self):
-        urdf_model_path = "/home/mmlab/codes/huangshzh/my_mujoco/urdf/dora2_erect_arm.urdf"
-        mesh_dir = "/home/mmlab/codes/huangshzh/my_mujoco/meshes_7Dof"
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        urdf_model_path = os.path.join(current_dir, "urdf/dora2_erect_arm.urdf")
+        mesh_dir = os.path.join(current_dir, "meshes_7Dof")
         
         self.robot = RobotWrapper.BuildFromURDF(urdf_model_path, mesh_dir, pin.JointModelFreeFlyer())
         self.model = self.robot.model
