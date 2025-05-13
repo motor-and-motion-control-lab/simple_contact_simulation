@@ -107,7 +107,8 @@ class Dynamics:
         
         prob = cp.Problem(objective, constraints)
         # prob.solve(solver = cp.MOSEK, verbose=True)
-        prob.solve(solver = cp.MOSEK)
+        # prob.solve(solver = cp.MOSEK)
+        prob.solve(solver = cp.ECOS)
         self.f = f.value
         
     def calc_next_v(self, is_contact):
